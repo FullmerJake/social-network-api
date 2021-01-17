@@ -15,10 +15,10 @@ const UserSchema = new Schema(
             // must match valid email address, look up Mongoose matching validation
         },
         thoughts: {
-            // fill out
+            // array of _id values referencing the Thought model
         },
         friends: {
-            // fill out
+            // array of _id values referencing the User model (self-reference)
         }
     },
     {
