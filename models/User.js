@@ -12,24 +12,21 @@ const UserSchema = new Schema(
             type: String,
             unique: true,
             required: true,
-            // must match valid email address, look up Mongoose matching validation
+            match: [/.+@.+\..+/]
         },
-        thoughts: {
-            // array of _id values referencing the Thought model
-        },
-        friends: {
-            // array of _id values referencing the User model (self-reference)
-        }
+        thoughts: [{ type: Schema.Types.ObjectId, ref: 'Thought' }],
+        friends: [{ type: Schema.Types.ObjectId, ref: 'User' }]
     },
     {
         toJson: {
             virtuals: true
-        }
+        },
+        id: false
     }
 );
 
-UserSchema.virtual().get(function(){
-
+userSchema.virtual('friendCount').get(function() {
+    return this.friends.length;
 });
 
 const User = model('User', UserSchema);

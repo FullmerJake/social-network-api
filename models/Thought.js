@@ -1,57 +1,26 @@
 const { Schema, model } = require('mongoose');
-// import moment
+const reactionSchema = require('./Reaction');
+const moment = require('moment');
 
-
-const ReactionSchema = new Schema(
-    {
-        reactionId: {
-            type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId()
-        },
-        reactionBody: {
-            type: String,
-            required: true,
-            // 280 character maximum
-        },
-        username: {
-            type: String,
-            required: true
-        },
-        createdAt: {
-            // type data
-            // set value to current timestamp
-            // use moement in a getter method to format the timestamp on query
-        }
-    },
-    {
-        toJSON: {
-            virtuals: true,
-            getters: true
-        }
-    }
-);
 
 const ThoughtSchema = new Schema(
     {
         thoughtText: {
             type: String,
             required: true,
-            // must be between 1 and 280 characters
+            minlength: 1,
+            maxlength: 280
         },
         createdAt: {
-            // type date
-            // set default value to the current timestamp
-            // use moement in a getter method to format the timestamp on quyery
+            type: Date,
+            default: Date.now,
+            get: (createdAtVal) => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
         },
-        // the user that created this thought
         username: {
             type: String,
             required: true
         },
-        // like replies
-        reactions: {
-            //array of nested documents created with reactionSchema
-        }
+        reactions: [reactionSchema]
     },
     {
         toJson: {
@@ -61,8 +30,8 @@ const ThoughtSchema = new Schema(
     }
 );
 
-ThoughtSchema.virtual().get(function(){
-
+thoughtSchema.virtual('reactionCount').get(function() {
+    return this.reactions.length;
 });
 
 ThoughtSchema = model('Thought', ThoughtSchema);
