@@ -26,7 +26,9 @@
   The most obvious contribution that can be made is so built a frontend. Once that has been done, adding more functionality and connections between the documents would make for a more in-depth application. As it stands, this is a very simple application. 
 
   ## Tests
-  See Images
+  <a href="https://drive.google.com/file/d/1JG-k1a-fN4zht4fQDHPoRjiuBdidutXX/view?usp=sharing"> Part 1 </a>
+
+  <a href="https://drive.google.com/file/d/1jTojpP8VKLct9NoPxNGWbhIfCOxxeDvO/view?usp=sharing"> Part 2 (picks up at 4:25 from Part 1) </a>
   
   ## Contact
   Learn more about the owner of this project by visiting their Github Profile: <a href=https://github.com/FullmerJake>FullmerJake</a>
